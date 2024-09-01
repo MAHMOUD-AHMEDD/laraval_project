@@ -1,0 +1,7 @@
+body{
+    /*background-color: gray;*/
+}
+.contact_us form{
+    max-width: 500px;
+    margin: auto;
+}

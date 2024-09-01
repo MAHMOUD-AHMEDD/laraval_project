@@ -1,8 +1,5 @@
-<html>
-<head>
-
-</head>
-<body>
-<h2>Body</h2>
-</body>
-</html>
+@extends('layout')
+@section('section','about')
+@section('content')
+    <h2>About Us</h2>
+@endsection
