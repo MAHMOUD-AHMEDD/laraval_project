@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -138,3 +139,11 @@
         </div>
     </body>
 </html>
+=======
+@extends('layout')
+@section('title','welcome page')
+
+@section('content')
+    <h1 class="alert alert-success">Welcome page</h1>
+@endsection
+>>>>>>> ccd36d9 (DashBoard)
