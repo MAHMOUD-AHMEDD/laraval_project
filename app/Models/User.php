@@ -4,24 +4,17 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-<<<<<<< HEAD
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
 class User extends Authenticatable
 {
+
+
+
     use HasFactory, Notifiable;
     use softDeletes;
->>>>>>> ccd36d9 (DashBoard)
 
     /**
      * The attributes that are mass assignable.
@@ -30,22 +23,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
+        'phone',
         'email',
         'password',
-<<<<<<< HEAD
         'type'
     ];
 
-=======
-        'phone',
-        'type',
-    ];
 
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
->>>>>>> ccd36d9 (DashBoard)
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -62,14 +50,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-=======
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+
 //    protected function casts(): array
 //    {
 //        return [
@@ -92,5 +73,4 @@ class User extends Authenticatable
     {
         return $this->morphOne(Images::class,'imageable');
     }
->>>>>>> ccd36d9 (DashBoard)
 }

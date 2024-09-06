@@ -18,3 +18,17 @@ table tr td img{
     width: 200px;
     height: 200px;
 }
+.delete-image span{
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 5px;
+    background-color: darkred;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50%;
+}

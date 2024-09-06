@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 @extends('layout')
 @section('section','about')
 @section('content')
     <h2>About Us</h2>
 @endsection
-=======
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,4 +22,3 @@
         @endforeach
     </body>
 </html>
->>>>>>> ccd36d9 (DashBoard)

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductControllerResource extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -17,10 +21,11 @@ class ProductControllerResource extends Controller
     {
 //        $items = Product::query()->first();
 //        $items->delete();
-//        $products = Product::query()->get();
 //        return $products;
         ////////////////////////////////////
-        return view('products.index');
+        $products = Product::query()->with('images')->get();
+//        dd($products);
+        return view('products.index',compact('products'));
     }
 
     /**
@@ -47,7 +52,8 @@ class ProductControllerResource extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product=Product::query()->where('id','=',$id)->with('images')->get();
+        return $product;
     }
 
     /**
@@ -55,7 +61,12 @@ class ProductControllerResource extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $product=Product::query()->with('images')->find($id);
+        if($product==null || $product->user_id != auth()->id() || auth()->user()->type != 'admin' ){
+            return redirect()->to('/products');
+        }
+        return view('products.save')->with('data',$product);
     }
 
     /**

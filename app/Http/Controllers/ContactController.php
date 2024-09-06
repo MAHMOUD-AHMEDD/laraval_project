@@ -2,44 +2,15 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use App\Http\Controllers\Controller;
-use App\Models\contact;
-=======
 use App\Http\Requests\ContactFormRequest;
 use App\Http\Resources\ContactResource;
 use App\Models\Contact;
->>>>>>> ccd36d9 (DashBoard)
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        return view('contact');
-    }
-    public function save()
-    {
-//        validate
-        request()->validate([
-            'username'=>'required|min:5|max:100',
-            'title'=>'required|min:5|max:100',
-            'message'=>'required|min:30',
-        ]);
-
-//        save data
-        contact::query()->create([
-            'username'=>request('username'),
-            'title'=>request('title'),
-            'message'=>request('message')
-        ]);
-//        return success message
-        return redirect()->back()->with('success','Question added successfully');
-
-//        return request('username');
-    }
-=======
 //        return request()->path();
 //        return request()->url();
 //        return request()->fullUrl();
@@ -58,7 +29,7 @@ class ContactController extends Controller
 //        return request()->except('username');
 //        return request()->input('username');
 //        return request('username');
-          ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
 
 //        dd($request->validated()); //dd in laravel , die in php
 
@@ -69,7 +40,7 @@ class ContactController extends Controller
 //            'title' => 'required|min:3|max:150',
 //            'message' => 'required|min:30',
 //        ]);
-          ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////
 //        Contact::create([
 //            'username' => request('username'),
 //            'title' => request('title'),
@@ -105,5 +76,4 @@ class ContactController extends Controller
 
 
 
->>>>>>> ccd36d9 (DashBoard)
 }

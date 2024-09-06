@@ -15,10 +15,8 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-<<<<<<< HEAD
-=======
+
 //        die('middleware check');
->>>>>>> ccd36d9 (DashBoard)
         return $next($request);
     }
 }
