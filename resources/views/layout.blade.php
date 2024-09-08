@@ -20,6 +20,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/products">products</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/orders/{{auth()->id()}}">orders</a>
+            </li>
             @guest
             <li class="nav-item">
                 <a class="nav-link" href="/auth/login">login</a>

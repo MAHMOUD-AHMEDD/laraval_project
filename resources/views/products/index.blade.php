@@ -20,7 +20,7 @@
                             </ul>
                             <div class="card-body">
                                 <a href="products/{{$product['id']}}/edit" class="card-link">Edit</a>
-                              @if(auth()->user()['id']!=$product['user_id'] ||auth()->user()['type']=='admin' )
+                              @if(auth()->id() ==$product['user_id'] &&auth()->user()['type']!='admin' )
                                     <a href="orders/add/{{$product['id']}}" class="card-link">add to cart</a>
                               @endif
                             </div>
