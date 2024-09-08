@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+//        if(Schema::hasTable('products')) return;
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('imageable_id');

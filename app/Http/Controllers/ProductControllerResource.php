@@ -72,9 +72,21 @@ class ProductControllerResource extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductFormRequest $request, string $id)
     {
-        //
+        DB::beginTransaction();
+        $product=Product::query()->with('images')->find($id);
+        if(sizeof($product->images)==0&&\request()->hasFile('images')==false){
+            return redirect()->back()->withErrors(['error'=>'You should upload one photo at least']);
+        }
+        $basic_data=request()->except('images');
+        $basic_data['id']=$id;
+        $basic_data['user_id']=$product->user_id;
+        event(new SaveProductEvent($basic_data,
+            request()->file('images')??[],false));
+        DB::commit();
+        return redirect()->back()->with('message','product created successfully');
+
     }
 
     /**

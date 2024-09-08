@@ -13,8 +13,14 @@
             @endif
             <div class="row">
                 <div class="col-lg-6 mb-2">
-                    <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+                    <form
+                      @if(!(isset($data))) action="{{route('products.store')}}" @else action="{{route('products.update',$data->id)}}" @endif
+                        method="post"
+                        enctype="multipart/form-data">
                         @csrf
+                        @if(isset($data))
+                            <input type="hidden" value="PUT" name="_method">
+                        @endif
                         <div class="mb-2">
                             <label for="">Name</label>
                             <input type="text" class="form-control simulated" name="name" value="{{isset($data)?$data->name:''}}" required>
@@ -29,7 +35,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="">Images</label>
-                            <input type="file" class="form-control simulated" name="images[]" accept="image/*" multiple required>
+                            <input type="file" class="form-control simulated" name="images[]" accept="image/*" multiple @if(!(isset($data)))  required @endif>
 
                         </div>
                         <input type="submit" class="form-control btn btn-success">

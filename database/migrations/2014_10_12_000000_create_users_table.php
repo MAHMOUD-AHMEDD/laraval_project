@@ -17,13 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-<<<<<<< HEAD
             $table->string('type');
-=======
             $table->string('phone');
             $table->string('type');
             $table->softDeletes();
->>>>>>> ccd36d9 (DashBoard)
             $table->rememberToken();
             $table->timestamps();
         });
