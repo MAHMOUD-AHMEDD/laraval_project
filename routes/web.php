@@ -12,6 +12,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ordersController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\CommentController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -110,12 +112,49 @@ Route::group(['prefix'=>'/dashboard', 'middleware' => 'admin'],function () {
 
 Route::get('/delete', [DeleteController::class, 'delete'])->name('delete');
 
-Route::resources([
-    'products' => ProductControllerResource::class
-]);
+//Route::resources([
+//    'products' => ProductControllerResource::class
+//]);
 
 Route::get('/delete-item',[DeleteController::class,'delete']);
 
 
-Route::get('/orders/{id}',[ordersController::class,'show']);
-Route::get('/orders/add/{id}',[ordersController::class,'add']);
+//Route::get('/orders/{id}',[ordersController::class,'show']);
+//Route::get('/orders/add/{id}',[ordersController::class,'add']);
+
+
+
+
+
+
+
+
+
+Route::get('/notifications',[TicketController::class,'show_notifications']);
+Route::post('/notifications/{id}/read', function ($id) {
+    $notification = auth()->user()->notifications()->find($id);
+    if ($notification) {
+        $notification->markAsRead();
+    }
+    return back();
+})->name('notifications.read');
+
+Route::resource('tickets', TicketController::class);
+Route::post('tickets/{ticket}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/notifications/{id}/read', function ($id) {
+    $notification = auth()->user()->notifications()->find($id);
+    if ($notification) {
+        $notification->markAsRead();
+    }
+    return back();
+})->name('notifications.read');
+Route::get('/tickets/{ticket}', [TicketController::class, 'show'])->name('tickets.show');
+Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
+Route::get('/admin/tickets/{ticket}', [TicketController::class, 'show_admin'])->name('admin.tickets.show');
+Route::post('/admin/tickets/{ticket}/send-answer', [TicketController::class, 'sendAnswer'])->name('admin.tickets.sendAnswer');
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users.index');
+    Route::post('/admin/users/{user}/send-notification', [UsersController::class, 'sendNotification'])->name('admin.users.sendNotification');
+    });
