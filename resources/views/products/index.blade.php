@@ -10,7 +10,13 @@
                 @foreach($products as $product)
                     <div class="col-6">
                         <div class="card" style="width: 18rem;">
-{{--                            <div class="card-img-top images"></div>--}}
+                            <div class="card-img-top ">
+                                @foreach($product->images as $image)
+                                    <div class="position-relative delete-image">
+                                        <img src="{{asset('images/'.$image->name)}}">
+                                    </div>
+                                @endforeach
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{$product['name']}}</h5>
                                 <p class="card-text">{{$product['info']}}</p>

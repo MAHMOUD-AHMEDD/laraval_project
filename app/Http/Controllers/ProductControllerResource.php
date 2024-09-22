@@ -53,6 +53,7 @@ class ProductControllerResource extends Controller
     public function show(string $id)
     {
         $product=Product::query()->where('id','=',$id)->with('images')->get();
+//        dd($product);
         return $product;
     }
 
@@ -76,7 +77,7 @@ class ProductControllerResource extends Controller
     {
         DB::beginTransaction();
         $product=Product::query()->with('images')->find($id);
-        if(sizeof($product->images)==0&&\request()->hasFile('images')==false){
+        if(sizeof($product->images)==0&&request()->hasFile('images')==false){
             return redirect()->back()->withErrors(['error'=>'You should upload one photo at least']);
         }
         $basic_data=request()->except('images');
